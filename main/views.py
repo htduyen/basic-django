@@ -2,9 +2,13 @@
 
 from django.http import HttpResponse
 
+from main.models import TodoList
+
 
 def index(response, id):
-    return HttpResponse(f"ID: {id}")
+    ls = TodoList.objects.get(id=id)
+    item = ls.item_set.get(id=1)
+    return HttpResponse(f"Todo: {ls.name} - Item: {item}")
 
 
 def v1(response):
