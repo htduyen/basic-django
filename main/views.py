@@ -3,8 +3,8 @@
 from django.http import HttpResponse
 
 
-def index(response):
-    return HttpResponse("Hello World")
+def index(response, id):
+    return HttpResponse(f"ID: {id}")
 
 
 def v1(response):
