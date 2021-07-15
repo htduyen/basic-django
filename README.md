@@ -50,6 +50,8 @@ Working With Our Database:
     
     print(list1.item_set.all())  # get all of the items on a ToDoList
     
+    filter_list = TodoList.objects.filter(name__startswith="Duyen")    
+
     list1.create(text="Go to the mall", complete=False)  # add an item to the ToDoList
     
     list1.name = "new name"  # change the name of the list
@@ -57,4 +59,15 @@ Working With Our Database:
     list1.save()  # save changes
     
     list1.delete()  # delete the list
+
+# Chapter 3: Admin Dashboard
+
+Creating an Admin Login:
+    
+    python manage.py createsuperuser
+
+Adding Our Database (admin.py):
+
+    admin.site.register(ToDoList)
+    admin.site.register(Item)
 
