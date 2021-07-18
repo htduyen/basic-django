@@ -13,7 +13,7 @@ def index(response, id):
     # ["name"], ["clicked"] ==> value abtribute in temlate
     # {"save": ["save"], "c1": ["click"]}
     if response.method == "POST":
-        print(response.POST)
+        # print(response.POST)
         # update complete or not
         if response.POST.get("save"):
             for item in ls.item_set.all():
@@ -21,14 +21,17 @@ def index(response, id):
                 if response.POST.get("c" + str(item.id)) == "clicked":
                     item.complete = True
                 else:
-                     item.complete = False
+                    item.complete = False
+                if "text" + str(item.id) in response.POST:
+                    item.text = response.POST.get("text" + str(item.id))
+
                 item.save()
-        elif response.POST.get("newItem"):
-            txt = response.POST.get("new")
-            if len(txt) > 2:
-                ls.item_set.create(text=txt, complete=False)
+        elif response.POST.get("add"):
+            newItem = response.POST.get("new")
+            if newItem != "":
+                ls.item_set.create(text=newItem, complete=False)
             else:
-                print("Invalid")
+                print("invalid")
     return render(response, "main/list.html", dict(ls=ls))
 
 
