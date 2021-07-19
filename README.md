@@ -71,3 +71,9 @@ Adding Our Database (admin.py):
     admin.site.register(ToDoList)
     admin.site.register(Item)
 
+
+Register form
+
+    python manage.py startapp register
+
+
